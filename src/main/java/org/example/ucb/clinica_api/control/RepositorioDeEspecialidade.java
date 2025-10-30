@@ -1,0 +1,13 @@
+package org.example.ucb.clinica_api.control;
+
+import org.example.ucb.model.Especialidade;
+import java.util.List;
+
+public interface RepositorioDeEspecialidade {
+    void salvar(Especialidade especialidade);
+    Especialidade BuscarEspecialidade(int id);
+    List<Especialidade> ListarEspecialidade();
+    List<Especialidade> BuscarEspPorVet(String crmv);
+    void atualizarEspecialidade(Especialidade especialidade);
+    boolean deletarEspecialidade(int id);
+}
