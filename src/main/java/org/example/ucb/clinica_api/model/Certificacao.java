@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Certificacao {
 
     @Id
-    @Column(name = "NumeroRegistro") // <-- ESTA É A LINHA QUE FALTAVA
+    @Column(name = "NumeroRegistro")
     private String numeroRegistro;
 
     @Column(name = "DataObtencao")
@@ -24,14 +24,13 @@ public class Certificacao {
     private String instituicaoCertificadora;
 
     @ManyToOne
-    @JoinColumn(name = "CRMV_certif")
+    @JoinColumn(name = "CRMV_certif", referencedColumnName = "CRMV")
     private Veterinario veterinario;
 
     @ManyToOne
-    @JoinColumn(name = "ID_especialidade")
+    @JoinColumn(name = "ID_especialidade", referencedColumnName = "IDespecialidade")
     private Especialidade especialidade;
 
-    // OBRIGATÓRIO: Construtor vazio
     public Certificacao() {}
 
     public Certificacao(String numeroRegistro, LocalDate dataObtencao, String instituicaoCertificadora, Veterinario veterinario) {
@@ -41,7 +40,7 @@ public class Certificacao {
         this.veterinario = veterinario;
     }
 
-    // --- Getters e Setters ---
+    // Getters e Setters
     public String getNumeroRegistro() {
         return numeroRegistro;
     }
