@@ -1,22 +1,20 @@
 package org.example.ucb.clinica_api.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo; // IMPORT ADICIONADO
-import com.fasterxml.jackson.annotation.ObjectIdGenerators; // IMPORT ADICIONADO
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "Certificacao") // CORREÇÃO: "certificacao" -> "Certificacao"
-// --- ANOTAÇÃO ADICIONADA ---
+@Table(name = "Certificacao")
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "numeroRegistro"
 )
-// -----------------------------
 public class Certificacao {
 
     @Id
-    @Column(name = "NumeroRegistro")
+    @Column(name = "NumeroRegistro") // <-- ESTA É A LINHA QUE FALTAVA
     private String numeroRegistro;
 
     @Column(name = "DataObtencao")
@@ -27,12 +25,10 @@ public class Certificacao {
 
     @ManyToOne
     @JoinColumn(name = "CRMV_certif")
-    // @JsonBackReference FOI REMOVIDO
     private Veterinario veterinario;
 
     @ManyToOne
     @JoinColumn(name = "ID_especialidade")
-    // @JsonBackReference FOI REMOVIDO
     private Especialidade especialidade;
 
     // OBRIGATÓRIO: Construtor vazio
