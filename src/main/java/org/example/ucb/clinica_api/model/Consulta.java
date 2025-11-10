@@ -2,6 +2,8 @@ package org.example.ucb.clinica_api.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import jakarta.persistence.*;
 // Removidos imports de LocalTime e LocalDate
 import java.util.List;
@@ -18,12 +20,13 @@ public class Consulta {
     @Column(name = "id")
     private String id;
 
-    // CAMPOS REMOVIDOS (não existem no BD_clinica.sql)
-    // private LocalDate dataConsulta;
-    // private LocalTime horaConsulta;
-    // private String tipo;
-
     private String diagnostico;
+
+    @Column(name = "data_consulta")
+    private LocalDate dataConsulta;
+
+    @Column(name = "hora_consulta")
+    private LocalTime horaConsulta;
 
     @ManyToOne
     @JoinColumn(name = "id_animal", referencedColumnName = "RFID")
@@ -51,6 +54,10 @@ public class Consulta {
     public void setDiagnostico(String diagnostico) {
         this.diagnostico = diagnostico;
     }
+    public LocalDate getDataConsulta() {return dataConsulta; }
+    public void setDataConsulta(LocalDate dataConsulta) {this.dataConsulta = dataConsulta; }
+    public LocalTime getHoraConsulta() {return horaConsulta; }
+    public void setHoraConsulta(LocalTime horaConsulta) {this.horaConsulta = horaConsulta; }
     public Animal getAnimal() {
         return animal;
     }
